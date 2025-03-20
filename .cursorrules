@@ -21,3 +21,20 @@ The internet is a global network of interconnected computers that communicate us
 ```
 
 If all concepts already have summaries, inform the user that no missing summaries were found.
+
+2. When the user inputs "structure", you should:
+   - Check all .md files in the workspace
+   - Identify all level-1 headings (lines starting with a single # character)
+   - Create a table of contents at the beginning of each file
+   - Format each entry as a clickable link to the corresponding section using Markdown link syntax
+   - The table of contents should be under a "# Table of Contents" heading
+   - After adding the table of contents, tell the user which files were updated
+   
+Example of a properly formatted table of contents:
+```markdown
+# Table of Contents
+- [Internet](#internet)
+- [Language](#language)
+```
+
+If the file already has a table of contents section, update it to reflect the current headings.

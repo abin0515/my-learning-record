@@ -1,3 +1,7 @@
+# Table of Contents
+- [Internet](#internet)
+- [Language](#language)
+
 # Internet
 ## How does the internet work?
 The internet is a global network of interconnected computers that communicate using standardized protocols, primarily TCP/IP. When you request awebpage, your device sends a data packet through your internet service provider (ISP) to a DNS server, which translates the website's domain name into an IP address. The packet is then routed across various networks (using routers and switches) to the destination server, which processes the request and sends back the response. 
