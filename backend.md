@@ -4,12 +4,13 @@
 - [Version Control System](#version-control-system)
 - [Relational Databases](#relational-databases)
 - [APIs](#apis)
+- [Caching](#caching)
 
 # Internet
 ## How does the internet work?
 The internet is a global network of interconnected computers that communicate using standardized protocols, primarily TCP/IP. When you request awebpage, your device sends a data packet through your internet service provider (ISP) to a DNS server, which translates the website's domain name into an IP address. The packet is then routed across various networks (using routers and switches) to the destination server, which processes the request and sends back the response. 
 
-**Summary: The internet is a global computer network that communicates via TCP/IP protocols; when you request a webpage, your device sends data packets through DNS resolution and routing to reach the target server, which then returns the re quested information.**
+**Summary: The internet is a global computer network that communicates via TCP/IP protocols; when you request a webpage, your device sends data packets through DNS resolution and routing to reach the target server, which then returns the requested information.**
 
 ## What is HTTP?
 HTTP (Hypertext Transfer Protocol) is a protocol used for transmitting hypertext via the World Wide Web. It defines how messages are formatted and transmitted, and how web servers and browsers should respond to various commands. HTTP operates on a request-response model: a client (usually a web browser) sends an HTTP request to a server for resources, such as web pages or files, and the server responds with the requested content and an HTTP status code indicating the result of the request. HTTP is stateless, meaning each request from a client to a server is independent and does not retain information about previous interactions. It forms the foundation of data communication on the web and is typically used with secure HTTP (HTTPS) for encrypted communication.
@@ -99,9 +100,66 @@ gRPC is a high-performance, open source universal RPC framework, RPC stands for 
 ## GraphQL
 GraphQL is a query language for APIs and a runtime for executing those queries, developed by Facebook. Unlike REST, where fixed endpoints return predefined data, GraphQL allows clients to request exactly the data they need, making API interactions more flexible and efficient. It uses a single endpoint and relies on a schema that defines the types and structure of the available data. This approach reduces over-fetching and under-fetching of data, making it ideal for complex applications with diverse data needs across multiple platforms (e.g., web, mobile).
 
-**Summary: GraphQL is a query language for APIs. Unlike REST, GraphQL allows clients to request exactly the data they need, making API interactions more flexible and efficient.**
+**Summary: GraphQL is a query language and runtime for APIs that enables clients to request precisely the data they need from a single endpoint; unlike REST's fixed response structure, it uses a type system and schema to let clients specify their exact data requirements, reducing over-fetching and under-fetching while providing more flexible and efficient data retrieval for complex applications.**
 
 ## Authentication
 API authentication is the process of verifying the identity of clients attempting to access an API, ensuring that only authorized users or applications can interact with the API's resources. Common methods include API keys, OAuth 2.0, JSON Web Tokens (JWT), basic authentication, and OpenID Connect. These techniques vary in complexity and security level, from simple token-based approaches to more sophisticated protocols that handle both authentication and authorization. API authentication protects sensitive data, prevents unauthorized access, enables usage tracking, and can provide granular control over resource access. The choice of authentication method depends on factors such as security requirements, types of clients, ease of implementation, and scalability needs. Implementing robust API authentication is crucial for maintaining the integrity, security, and controlled usage of web services and applications in modern, interconnected software ecosystems.
 
 **Summary: API authentication verifies the identity of clients accessing an API through methods like API keys, OAuth, JWT, and OpenID Connect; it protects resources, prevents unauthorized access, enables usage tracking, and provides access control, with the appropriate method depending on security requirements, client types, implementation complexity, and scalability needs.**
+
+## JWT
+JWT (JSON Web Token) is an open standard for securely transmitting information between parties as a JSON object. It consists of three parts: a header (which specifies the token type and algorithm used for signing), a payload (which contains the claims or the data being transmitted), and a signature (which is used to verify the token's integrity and authenticity). JWTs are commonly used for authentication and authorization purposes, allowing users to securely transmit and validate their identity and permissions across web applications and APIs. They are compact, self-contained, and can be easily transmitted in HTTP headers, making them popular for modern web and mobile applications.
+
+**Summary: JWT is an open standard for secure information exchange that consists of three parts (header, payload, signature); it's commonly used for authentication/authorization in web applications as it provides a compact, self-contained way to transmit user identity and permissions in a tamper-proof token that can be easily verified.**
+
+## OAuth
+OAuth is an open standard for authorization that allows third-party applications to access a user's resources without exposing their credentials. It works by issuing access tokens after users grant permission, which applications then use to interact with resource servers on behalf of the user. This process involves a resource owner (the user), a resource server (which holds the data), and an authorization server (which issues tokens). OAuth enables secure, token-based access management, commonly used for granting applications permissions to interact with services like social media accounts or cloud storage.
+
+**Summary: OAuth is an authorization protocol that enables third-party applications to access user resources without requiring credentials; it uses a token-based system where users grant permission to applications, allowing secure delegated access to services like social media or cloud storage without exposing passwords.**
+
+## Token authentication
+Token-based authentication is a protocol which allows users to verify their identity, and in return receive a unique access token. During the life of the token, users then access the website or app that the token has been issued for, rather than having to re-enter credentials each time they go back to the same webpage, app, or any resource protected with that same token. Auth tokens work like a stamped ticket. The user retains access as long as the token remains valid. Once the user logs out or quits an app, the token is invalidated. Token-based authentication is different from traditional password-based or server-based authentication techniques. Tokens offer a second layer of security, and administrators have detailed control over each action and transaction.
+
+**Summary: Token authentication is a stateless security method where users receive a unique token upon verification that grants access to protected resources for a limited time; it eliminates the need to repeatedly enter credentials, functions like a digital ticket, and provides administrators with granular control over user sessions and permissions.**
+
+## Cookie-Based Authentication
+Cookie-based authentication is a method of maintaining user sessions in web applications. When a user logs in, the server creates a session and sends a unique identifier (session ID) to the client as a cookie. This cookie is then sent with every subsequent request, allowing the server to identify and authenticate the user. The actual session data is typically stored on the server, with the cookie merely serving as a key to access this data. This approach is stateful on the server side and works well for traditional web applications. It's relatively simple to implement and is natively supported by browsers. However, cookie-based authentication faces challenges with cross-origin requests, can be vulnerable to CSRF attacks if not properly secured, and may not be ideal for modern single-page applications or mobile apps. Despite these limitations, it remains a common authentication method, especially for server-rendered web applications. 
+
+**Summary: Cookie-based authentication maintains user sessions by storing a unique session ID in the client's browser cookies and keeping the actual session data on the server; this stateful approach is simple to implement and natively supported by browsers, but has limitations with cross-origin requests, CSRF vulnerabilities, and modern application architectures like SPAs and mobile apps.**
+
+## OpenID
+OpenID is an open standard for decentralized authentication that allows users to log in to multiple websites and applications using a single set of credentials, managed by an identity provider (IdP). It enables users to authenticate their identity through an external service, simplifying the login process and reducing the need for multiple usernames and passwords. OpenID typically works in conjunction with OAuth 2.0 for authorization, allowing users to grant access to their data while maintaining security. This approach enhances user convenience and streamlines identity management across various platforms.
+
+**Summary: OpenID is a decentralized authentication standard that enables single sign-on across multiple websites and applications; it allows users to verify their identity through trusted third-party identity providers, eliminating the need for separate credentials for each service and typically working alongside OAuth for a complete authentication and authorization solution.**
+Firebase:
+Starts an OAuth 2.0 + OIDC flow with Google.
+Receives the tokens (Access Token + ID Token).
+Uses the ID token to create a Firebase session for that user.
+You can then access firebase.auth().currentUser to get user info.
+
+## Security Assertion Markup Language (SAML)
+Security Assertion Markup Language (SAML) is an XML-based framework used for single sign-on (SSO) and identity federation, enabling users to authenticate once and gain access to multiple applications or services. It allows for the exchange of authentication and authorization data between an identity provider (IdP) and a service provider (SP). SAML assertions are XML documents that contain user identity information and attributes, and are used to convey authentication credentials and permissions. By implementing SAML, organizations can streamline user management, enhance security through centralized authentication, and simplify the user experience by reducing the need for multiple logins across different systems.
+
+**Summary: SAML is an XML-based standard for implementing single sign-on and exchanging authentication data between identity providers and service providers; it uses XML assertions containing identity information to enable users to authenticate once and access multiple systems, providing enterprises with centralized identity management and improved security while enhancing user experience.**
+
+# Caching
+## Caching
+Caching is a technique used in computing to store and retrieve frequently accessed data quickly, reducing the need to fetch it from the original, slower source repeatedly. It involves keeping a copy of data in a location that's faster to access than its primary storage. Caching can occur at various levels, including browser caching, application-level caching, and database caching. It significantly improves performance by reducing latency, decreasing network traffic, and lowering the load on servers or databases. Common caching strategies include time-based expiration, least recently used (LRU) algorithms, and write-through or write-back policies. While caching enhances speed and efficiency, it also introduces challenges in maintaining data consistency and freshness. Effective cache management is crucial in balancing performance gains with the need for up-to-date information in dynamic systems.
+
+**Summary: Caching is a performance optimization technique that stores copies of frequently accessed data in faster storage locations; it operates at multiple levels (browser, application, database) to reduce latency, network traffic, and server load, using strategies like time-based expiration and LRU algorithms while balancing the trade-offs between speed and data consistency.**
+
+## Server-side caching
+Server-side caching is a technique used to improve application performance by storing frequently accessed data in memory on the server, reducing the need for repeated data retrieval or computation. This approach helps to speed up response times and reduce the load on databases and other backend services. Common methods include caching database query results, HTML fragments, and API responses. Popular server-side caching tools and technologies include Redis, Memcached, and built-in caching mechanisms in web frameworks. By efficiently managing and serving cached content, server-side caching enhances scalability and responsiveness of applications.
+
+**Summary: Server-side caching stores frequently accessed data in memory on the server to improve performance; it reduces database and backend service load by temporarily storing query results, HTML fragments, and API responses using technologies like Redis and Memcached, resulting in faster response times and enhanced application scalability.**
+
+## CDN (Content Delivery Network)
+A Content Delivery Network (CDN) service aims to provide high availability and performance improvements of websites. This is achieved with fast delivery of website assets and content typically via geographically closer endpoints to the client requests.
+Traditional commercial CDNs (Amazon CloudFront, Akamai, CloudFlare and Fastly) provide servers across the globe which can be used for this purpose. Serving assets and contents via a CDN reduces bandwidth on website hosting, provides an extra layer of caching to reduce potential outages and can improve website security as well
+
+**Summary: CDNs are distributed server networks that deliver web content to users based on their geographic location; they improve website performance by serving assets from endpoints physically closer to users, reducing latency and bandwidth costs while enhancing reliability through additional caching layers and improving security through specialized protection mechanisms.**
+
+## Client Side Caching
+Client-side caching is a technique where web browsers or applications store data locally on the user's device to improve performance and reduce server load. It involves saving copies of web pages, images, scripts, and other resources on the client's system for faster access on subsequent visits. Modern browsers implement various caching mechanisms, including HTTP caching (using headers like Cache-Control and ETag), service workers for offline functionality, and local storage APIs. Client-side caching significantly reduces network traffic and load times, enhancing user experience, especially on slower connections. However, it requires careful management to balance improved performance with the need for up-to-date content. Developers must implement appropriate cache invalidation strategies and consider cache-busting techniques for critical updates. Effective client-side caching is crucial for creating responsive, efficient web applications while minimizing server resource usage.
+
+**Summary: Client-side caching stores website resources locally on users' devices to improve performance and reduce server load; it uses browser mechanisms like HTTP headers, service workers, and storage APIs to save and retrieve content, significantly reducing load times and network traffic while requiring careful invalidation strategies to ensure content remains up-to-date.**
