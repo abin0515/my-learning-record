@@ -5,6 +5,8 @@
 - [Relational Databases](#relational-databases)
 - [APIs](#apis)
 - [Caching](#caching)
+- [Web Security](#web-security)
+- [Testing](#testing)
 
 # Internet
 ## How does the internet work?
@@ -144,7 +146,7 @@ Security Assertion Markup Language (SAML) is an XML-based framework used for sin
 
 # Caching
 ## Caching
-Caching is a technique used in computing to store and retrieve frequently accessed data quickly, reducing the need to fetch it from the original, slower source repeatedly. It involves keeping a copy of data in a location that's faster to access than its primary storage. Caching can occur at various levels, including browser caching, application-level caching, and database caching. It significantly improves performance by reducing latency, decreasing network traffic, and lowering the load on servers or databases. Common caching strategies include time-based expiration, least recently used (LRU) algorithms, and write-through or write-back policies. While caching enhances speed and efficiency, it also introduces challenges in maintaining data consistency and freshness. Effective cache management is crucial in balancing performance gains with the need for up-to-date information in dynamic systems.
+Caching is a technique used  to store and retrieve frequently accessed data quickly, reducing the need to fetch it from the original, slower source repeatedly. It involves keeping a copy of data in a location that's faster to access than its primary storage. Caching can occur at various levels, including browser caching, application-level caching, and database caching. It significantly improves performance by reducing latency, decreasing network traffic, and lowering the load on servers or databases. Common caching strategies include time-based expiration, least recently used (LRU) algorithms, and write-through or write-back policies. While caching enhances speed and efficiency, it also introduces challenges in maintaining data consistency and freshness. Effective cache management is crucial in balancing performance gains with the need for up-to-date information in dynamic systems.
 
 **Summary: Caching is a performance optimization technique that stores copies of frequently accessed data in faster storage locations; it operates at multiple levels (browser, application, database) to reduce latency, network traffic, and server load, using strategies like time-based expiration and LRU algorithms while balancing the trade-offs between speed and data consistency.**
 
@@ -163,3 +165,35 @@ Traditional commercial CDNs (Amazon CloudFront, Akamai, CloudFlare and Fastly) p
 Client-side caching is a technique where web browsers or applications store data locally on the user's device to improve performance and reduce server load. It involves saving copies of web pages, images, scripts, and other resources on the client's system for faster access on subsequent visits. Modern browsers implement various caching mechanisms, including HTTP caching (using headers like Cache-Control and ETag), service workers for offline functionality, and local storage APIs. Client-side caching significantly reduces network traffic and load times, enhancing user experience, especially on slower connections. However, it requires careful management to balance improved performance with the need for up-to-date content. Developers must implement appropriate cache invalidation strategies and consider cache-busting techniques for critical updates. Effective client-side caching is crucial for creating responsive, efficient web applications while minimizing server resource usage.
 
 **Summary: Client-side caching stores website resources locally on users' devices to improve performance and reduce server load; it uses browser mechanisms like HTTP headers, service workers, and storage APIs to save and retrieve content, significantly reducing load times and network traffic while requiring careful invalidation strategies to ensure content remains up-to-date.**
+
+# Web Security
+## Web Security
+Web security involves protecting web applications from threats and vulnerabilities to ensure data confidentiality, integrity, and availability. Key practices include strong authentication and authorization mechanisms, using encryption (e.g., SSL/TLS) for secure data transmission, and validating user inputs to prevent attacks like SQL injection and cross-site scripting (XSS). Secure coding practices, effective session management, and regular updates and patching are crucial for maintaining security. Additionally, ongoing security testing, including penetration testing and vulnerability assessments, helps identify and address potential weaknesses, safeguarding applications and maintaining user trust.
+
+**Summary: Web security protects applications from threats through multiple defensive layers including authentication, encryption, input validation, and secure coding; it safeguards data confidentiality, integrity, and availability by implementing measures against common attacks like SQL injection and XSS while employing regular testing and updates to identify and mitigate emerging vulnerabilities.**
+
+## Scrypt
+scrypt is a key derivation function designed to be computationally intensive and memory-hard to resist brute-force attacks and hardware-based attacks, such as those using GPUs or ASICs. It was developed to provide secure password hashing by making it difficult and costly for attackers to perform large-scale attacks. scrypt combines a hash function with a large amount of memory usage and a CPU-intensive computation process, which ensures that even if an attacker can perform many computations in parallel, the memory requirements make such attacks impractical. It is commonly used in cryptographic applications, including secure password storage and cryptocurrency mining.
+
+**Summary: Scrypt is a memory-hard key derivation function designed to resist brute-force and hardware-accelerated attacks; it deliberately uses substantial memory and CPU resources to make password cracking computationally expensive and impractical, particularly against specialized hardware like GPUs and ASICs, making it effective for secure password storage and cryptocurrency applications.**
+
+## Bcrypt
+Bcrypt is a password-hashing function designed to securely hash passwords for storage in databases. Created by Niels Provos and David Mazières, it's based on the Blowfish cipher and incorporates a salt to protect against rainbow table attacks. Bcrypt's key feature is its adaptive nature, allowing for the adjustment of its cost factor to make it slower as computational power increases, thus maintaining resistance against brute-force attacks over time. It produces a fixed-size hash output, typically 60 characters long, which includes the salt and cost factor. Bcrypt is widely used in many programming languages and frameworks due to its security strength and relative ease of implementation. Its deliberate slowness in processing makes it particularly effective for password storage, where speed is not a priority but security is paramount.
+
+**Summary: Bcrypt is an adaptive password-hashing function based on the Blowfish cipher that incorporates salting to prevent rainbow table attacks; its key strength is the adjustable cost factor that can be increased over time to maintain security against growing computational power, making it a widely-adopted solution for secure password storage in applications where processing speed is less critical than protection.**
+
+# Testing
+## Testing
+Testing is a systematic process used to evaluate the functionality, performance, and quality of software or systems to ensure they meet specified requirements and standards. It involves various methodologies and levels, including unit testing (testing individual components), integration testing (verifying interactions between components), system testing (assessing the entire system's behavior), and acceptance testing (confirming it meets user needs). Testing can be manual or automated and aims to identify defects, validate that features work as intended, and ensure the system performs reliably under different conditions. Effective testing is critical for delivering high-quality software and mitigating risks before deployment.
+
+**Summary: Testing is a systematic evaluation process that verifies software meets requirements and functions correctly; it encompasses multiple levels (unit, integration, system, acceptance) and approaches (manual, automated), with the goal of identifying defects early, ensuring reliability, and delivering quality software while minimizing deployment risks.**
+
+## Unit Testing
+Unit testing is a software testing method where individual components or units of a program are tested in isolation to ensure they function correctly. This approach focuses on verifying the smallest testable parts of an application, such as functions or methods, by executing them with predefined inputs and comparing the results to expected outcomes. Unit tests are typically automated and written by developers during the coding phase to catch bugs early, facilitate code refactoring, and ensure that each unit of code performs as intended. By isolating and testing each component, unit testing helps improve code reliability and maintainability.
+
+**Summary: Unit testing verifies individual code components in isolation by checking their behavior against expected results; it's typically performed by developers using automated tests with predefined inputs, helping to catch bugs early in development, support safe refactoring, and ensure each small piece of functionality works correctly before integration.**
+
+## Functional Testing
+Functional testing is where software is tested to ensure functional requirements are met. Usually, it is a form of black box testing in which the tester has no understanding of the source code; testing is performed by providing input and comparing expected/actual output. It contrasts with non-functional testing, which includes performance, load, scalability, and penetration testing.
+
+**Summary: Functional testing verifies that software meets its specified requirements by examining its behavior from a user perspective; it's typically implemented as black box testing where testers provide inputs and evaluate outputs without knowledge of the internal code, focusing strictly on functionality rather than performance, security, or other non-functional aspects.**
