@@ -1,5 +1,6 @@
 # Cursor custom rules file
 .cursorrules
+.cursor
 
 # OS files
 .DS_Store
