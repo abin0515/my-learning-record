@@ -14,6 +14,7 @@ For example, leetcode 104 https://leetcode.com/problems/maximum-depth-of-binary-
 It is a problem that asks you to find the maximum depth of a binary tree.
 
 1.traverse:
+
 // Traversal approach
 class Solution {
 
@@ -49,6 +50,7 @@ class Solution {
 }
 
 2.recursion(divede and conquer):
+
 // Divide‑and‑conquer approach
 class Solution {
     // Definition: given a node, return the maximum depth of the binary tree rooted at this node
