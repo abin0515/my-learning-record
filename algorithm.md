@@ -132,3 +132,26 @@ public void backtrack(List<Integer> path, int[] options) {
 }
 ```
 The core idea is that we do recursion inside the for loop: **"make a choice"** before the recursive call and **"undo the choice"** after the recursive call.
+
+## Now, we use backtrack template to solve permutation, combination, and subset problem:
+
+Whether it's a permutation, combination, or subset problem, simply put, they all involve selecting a number of elements from a sequence nums based on certain rules. There are mainly the following variations:
+
+## Form 1: Elements are unique and cannot be reused.
+This is the most basic form — all elements in nums are distinct, and each element can be used at most once.
+
+For example, in a combination problem, if the input is nums = [2, 3, 6, 7], the only valid combination that sums to 7 would be [7].
+
+## Form 2: Elements may repeat in nums but cannot be reused.
+In this case, nums may contain duplicate elements, but each element can still be used at most once.
+
+For example, in a combination problem, if the input is nums = [2, 5, 2, 1, 2], valid combinations that sum to 7 would include [2, 2, 2, 1] and [5, 2].
+
+## Form 3: Elements are unique and can be reused.
+Here, elements in nums are distinct, but each element can be chosen multiple times.
+
+For example, in a combination problem, if the input is nums = [2, 3, 6, 7], valid combinations that sum to 7 would be [2, 2, 3] and [7].
+
+Of course, you could also consider a fourth form, where elements may repeat and can also be reused. But since elements can be reused, having duplicates in nums becomes redundant. Once duplicates are removed, it becomes equivalent to Form 3, so this case doesn't need separate consideration.
+
+The examples above are based on combination problems, but the same three basic forms apply to permutations, combinations, and subsets — resulting in a total of 9 possible variations.
