@@ -155,3 +155,59 @@ For example, in a combination problem, if the input is nums = [2, 3, 6, 7], vali
 Of course, you could also consider a fourth form, where elements may repeat and can also be reused. But since elements can be reused, having duplicates in nums becomes redundant. Once duplicates are removed, it becomes equivalent to Form 3, so this case doesn't need separate consideration.
 
 The examples above are based on combination problems, but the same three basic forms apply to permutations, combinations, and subsets — resulting in a total of 9 possible variations.
+
+## Subset(Elements are unique and cannot be reused):
+
+For example, leetcode 78 https://leetcode.cn/problems/subsets/
+
+```java
+class Solution {
+    List<List<Integer>> res = new LinkedList<>();
+    List<Integer> track = new LinkedList<>();
+    public List<List<Integer>> subsets(int[] nums) {
+        
+        backtrack(nums, 0);
+        return res;
+    }
+
+    void backtrack(int[] nums, int start){
+        // base case
+        // we do not need to check base case here, after the for loop, function will end
+        res.add(new LinkedList<>(track));
+        for(int i = start; i < nums.length; i++){
+            // do decision
+            track.add(nums[i]);
+            backtrack(nums, i + 1);
+            // undo decision
+            track.removeLast();
+        }
+    }
+}
+```
+
+## Combination(Elements are unique and cannot be reused):
+
+For example, leetcode 77 https://leetcode.cn/problems/combinations/
+```java
+class Solution {
+    List<List<Integer>> res = new LinkedList<>();
+    List<Integer> track = new LinkedList<>();
+
+    public List<List<Integer>> combine(int n, int k) {
+        backtrack(n, k, 1);
+        return res;
+    }
+    void backtrack(int n, int k, int start){
+        //base case, we only need to add 2 number combination to res
+        if(track.size() == k){
+            res.add(new LinkedList<>(track));
+        }
+        for(int i = start; i <= n; i++){
+            track.add(i);
+            
+            backtrack(n, k, i + 1);
+            track.removeLast();
+        }
+    }
+}
+```
