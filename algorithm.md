@@ -1,7 +1,9 @@
 # Binary Tree
 To start with, we can summarize that there are main thinking patterns for solving binary tree problems.
+
 1.Traverse mindset: 
 Think about it, can you obtain the answer by traversing the tree once? If so, implement a **traverse** function that updates an external variable as you go--this is the traversal approach.
+
 2.Divide and conquer: 
 Can you define a recursive function whose return value for each subtree leads directly to the answer for the whole tree? If so, write out that recursive function's signature and make full use of its return value--this is the **divide and conquer** approach.
 
@@ -67,4 +69,32 @@ class Solution {
         // plus one for the root node itself
         return 1 + Math.max(leftMax, rightMax);
     }
+}
+
+Also, we have another way to solve this problem--level order traversal.
+Binary tree problems are primarily designed to develop recursive thinking, whereas level-order trvaversal is an iterative approach and is relatively straightforward.
+
+
+int levelTraverse(TreeNode root) {
+    if (root == null) return;
+    Queue<TreeNode> q = new LinkedList<>();
+    q.offer(root);
+    int maxDepth = 0;
+    // iterate through each level from top to bottom
+    while (!q.isEmpty()) {
+        int sz = q.size();
+        maxDepth++;
+        // iterate through each node in the current level from left to right
+        for (int i = 0; i < sz; i++) {
+            TreeNode cur = q.poll();
+            // store next level nodes
+            if (cur.left != null) {
+                q.offer(cur.left);
+            }
+            if (cur.right != null) {
+                q.offer(cur.right);
+            }
+        }
+    }
+    return maxDepth;
 }
