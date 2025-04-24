@@ -103,3 +103,32 @@ int levelTraverse(TreeNode root) {
     return maxDepth;
 }
 ```
+
+# BackTrack
+Solving a backtrack problem is essentially a process of **traversing a decision tree**, where each **leaf node** represents a valid solution to the problem. By travering the decision tree and collecting all the answers at the leaf nodes, we can obtain all valid solutions to the problem.
+
+when we at a decision tree node, we should consider three things:
+
+1.path: what we have chosen so far
+
+2.options: what we can choose at current node
+
+3.base case: when we reach the leaf node, we can not do more decision again, return the path
+
+backtrack template:
+
+```java
+List<Integer> res = new ArrayList<>();
+public void backtrack(List<Integer> path, int[] options) {
+    if /*satisfy base case*/{ 
+        res.add(path);
+        return;
+    }
+    for (int option : options) {
+        // do decision
+        backtrack(path, options);
+        // undo decision
+    }
+}
+```
+The core idea is that we do recursion inside the for loop: **"make a choice"** before the recursive call and **"undo the choice"** after the recursive call.
