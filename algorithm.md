@@ -17,6 +17,7 @@ It is a problem that asks you to find the maximum depth of a binary tree.
 
 1.traverse:
 
+```java
 // Traversal approach
 class Solution {
 
@@ -50,9 +51,11 @@ class Solution {
         depth--;
     }
 }
+```
 
 2.recursion(divede and conquer):
 
+```java
 // Divide‑and‑conquer approach
 class Solution {
     // Definition: given a node, return the maximum depth of the binary tree rooted at this node
@@ -70,13 +73,14 @@ class Solution {
         return 1 + Math.max(leftMax, rightMax);
     }
 }
+```
 
 Also, we have another way to solve this problem--level order traversal.
 Binary tree problems are primarily designed to develop recursive thinking, whereas level-order trvaversal is an iterative approach and is relatively straightforward.
 
-
+```java
 int levelTraverse(TreeNode root) {
-    if (root == null) return;
+    if (root == null) return 0; // Modified return to 0 for null root
     Queue<TreeNode> q = new LinkedList<>();
     q.offer(root);
     int maxDepth = 0;
@@ -98,3 +102,4 @@ int levelTraverse(TreeNode root) {
     }
     return maxDepth;
 }
+```

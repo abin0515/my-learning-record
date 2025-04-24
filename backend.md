@@ -8,6 +8,7 @@
 - [Web Security](#web-security)
 - [Testing](#testing)
 - [CI/CD](#cicd)
+- [More about Databases](#more-about-databases)
 
 # Internet
 ## How does the internet work?
