@@ -211,3 +211,105 @@ class Solution {
     }
 }
 ```
+
+## Permutation(Elements are unique and cannot be reused):
+For example, leetcode 46 https://leetcode.cn/problems/permutations/
+```java
+class Solution {
+    List<List<Integer>> res;
+    List<Integer> track;
+    boolean[] used;
+    public List<List<Integer>> permute(int[] nums) {
+        int n = nums.length;
+        res = new LinkedList<>();
+        used = new boolean[n];
+        track = new LinkedList<>();
+        backtrack(nums, track, used);
+        return res;
+    }
+    void backtrack(int[] nums, List<Integer> track, boolean[] used){
+        if(track.size() == nums.length){
+            res.add(new LinkedList<>(track));
+            return;
+        }
+        for(int i = 0; i < nums.length; i++){
+            if(used[i]){
+                continue;
+            }
+            track.add(nums[i]);
+            used[i] = true;
+            backtrack(nums, track, used);
+            track.removeLast();
+            used[i] = false;
+
+        }
+    }
+}
+``` 
+
+## Subset and Combination(Elements are not unique and cannot be reused):
+Combination is kind of same as subset, but we need to add a pruning logic to avoid duplicate combinations.
+
+let see subset code first:
+
+For example, leetcode 90 https://leetcode.cn/problems/subsets-ii/
+```java
+class Solution {
+    List<List<Integer>> res = new LinkedList<>();
+    List<Integer> track = new LinkedList<>();
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        Arrays.sort(nums);
+        backtrack(nums, 0);
+        return res;
+    }
+    void backtrack(int[] nums, int start){
+        res.add(new LinkedList<>(track));
+        for(int i = start; i < nums.length; i++){
+            if(i > start && nums[i] == nums[i - 1]){
+                continue;
+            }
+            track.add(nums[i]);
+            backtrack(nums, i + 1);
+            track.removeLast();
+        }
+    }
+}
+```
+
+This piece of code is almost identical to the standard subset problem code, with the addition of sorting and pruning logic
+
+Then, let's look at the combination problem:
+
+For example, leetcode 40 https://leetcode.cn/problems/combination-sum-ii/description/
+
+```java
+class Solution {
+    List<List<Integer>> res = new LinkedList<>();
+    List<Integer> track = new LinkedList<>();
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        int pathSum = 0;
+        Arrays.sort(candidates);
+        backtrack(candidates, 0, pathSum, target);
+        return res;
+    }
+    void backtrack(int[] candidates, int start, int pathSum, int target){
+        if(pathSum == target){
+            res.add(new LinkedList<>(track));
+            return;
+        }
+        if(pathSum > target){
+            return;
+        }
+        for(int i = start; i < candidates.length; i++){
+            if(i > start && candidates[i] == candidates[i - 1]){
+                continue;
+            }
+            track.add(candidates[i]);
+            pathSum += candidates[i];
+            backtrack(candidates, i + 1, pathSum, target);
+            track.removeLast();
+            pathSum -= candidates[i];
+        }
+    }
+}
+```
